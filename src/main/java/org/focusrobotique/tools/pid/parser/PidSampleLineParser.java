@@ -25,7 +25,6 @@ public class PidSampleLineParser {
 		result.setNormalPosition(Float.valueOf(values[5]));
 		result.setRealPosition(Float.valueOf(values[6]));
 
-		// errors
 		result.setProportionalError(Float.valueOf(values[7]));
 		result.setIntegralError(Float.valueOf(values[8]));
 		result.setDerivativeError(Float.valueOf(values[9]));

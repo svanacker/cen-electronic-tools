@@ -137,8 +137,17 @@ public class PidSampleLine {
 	public void setU(float u) {
 		this.u = u;
 	}
-	
+
 	public PidSampleLine() {
-		
+
+	}
+
+	@Override
+	public String toString() {
+		return "PidSampleLine [instructionType=" + instructionType + ", pidTime=" + pidTime + ", pidType=" + pidType
+				+ ", normalSpeed=" + normalSpeed + ", realSpeed=" + realSpeed + ", normalPosition=" + normalPosition
+				+ ", realPosition=" + realPosition + ", proportionalError=" + proportionalError + ", integralError="
+				+ integralError + ", derivativeError=" + derivativeError + ", pExE=" + pExE + ", iExE=" + iExE
+				+ ", dExE=" + dExE + ", normalU=" + normalU + ", u=" + u + "]";
 	}
 }
