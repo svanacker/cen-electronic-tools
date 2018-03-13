@@ -19,7 +19,7 @@ public class ExcelPidFiller {
 	public void fill(File excelModelFile, List<PidSampleLine> lines, File excelTargetFile) throws Exception {
 		XSSFWorkbook wb = new XSSFWorkbook(excelModelFile);
 		XSSFSheet sheet = wb.getSheet("Data");
-		int rowIndex = 2;
+		int rowIndex = 1;
 		for (PidSampleLine line : lines) {
 			XSSFRow row = sheet.getRow(rowIndex);
 			if (row == null) {
