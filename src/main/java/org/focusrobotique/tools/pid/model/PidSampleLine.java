@@ -7,6 +7,8 @@ public class PidSampleLine {
 	private PidType pidType;
 	private float normalSpeed;
 	private float realSpeed;
+	private float normalAcceleration;
+	private float realAcceleration;
 	private float normalPosition;
 	private float realPosition;
 	private float proportionalError;
@@ -58,6 +60,22 @@ public class PidSampleLine {
 		this.realSpeed = realSpeed;
 	}
 
+	public float getNormalAcceleration() {
+		return normalAcceleration;
+	}
+
+	public void setNormalAcceleration(float normalAcceleration) {
+		this.normalAcceleration = normalAcceleration;
+	}
+
+	public float getRealAcceleration() {
+		return realAcceleration;
+	}
+
+	public void setRealAcceleration(float realAcceleration) {
+		this.realAcceleration = realAcceleration;
+	}
+	
 	public float getNormalPosition() {
 		return normalPosition;
 	}
@@ -145,7 +163,8 @@ public class PidSampleLine {
 	@Override
 	public String toString() {
 		return "PidSampleLine [instructionType=" + instructionType + ", pidTime=" + pidTime + ", pidType=" + pidType
-				+ ", normalSpeed=" + normalSpeed + ", realSpeed=" + realSpeed + ", normalPosition=" + normalPosition
+				+ ", normalSpeed=" + normalSpeed + ", realSpeed=" + realSpeed + ", normalAcceleration="
+				+ normalAcceleration + ", realAcceleration=" + realAcceleration + ", normalPosition=" + normalPosition
 				+ ", realPosition=" + realPosition + ", proportionalError=" + proportionalError + ", integralError="
 				+ integralError + ", derivativeError=" + derivativeError + ", pExE=" + pExE + ", iExE=" + iExE
 				+ ", dExE=" + dExE + ", normalU=" + normalU + ", u=" + u + "]";

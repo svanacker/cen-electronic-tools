@@ -2,13 +2,13 @@ package org.focusrobotique.tools.pid.main;
 
 import java.io.File;
 import java.time.LocalDateTime;
-import java.util.List;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
+import org.focusrobotique.tools.pid.command.ComputationValuesDataPidCommandGenerator;
 import org.focusrobotique.tools.pid.excel.ExcelPidFiller;
 import org.focusrobotique.tools.pid.model.InstructionType;
-import org.focusrobotique.tools.pid.model.PidSampleLine;
+import org.focusrobotique.tools.pid.model.PidSampleLineList;
 import org.focusrobotique.tools.pid.parser.ConsoleParser;
 import org.focusrobotique.tools.pid.utils.DateUtils;
 
@@ -25,7 +25,7 @@ public class ExcelPidMain {
 
 	// BASE DIRECTORY for all (SOURCE / MODEL / TARGET)
 	@Parameter(names = { "-b", "--base-dir" }, description = "Base Directory for Source / Model / Target")
-	private String baseDirectory = "D:/dev/git/cen-electronic-data/";
+	private String baseDirectory = "C:/dev/git/svanacker/cen-electronic-data/";
 
 	// SOURCE
 	@Parameter(required = true, names = { "-c",
@@ -80,9 +80,9 @@ public class ExcelPidMain {
 
 		ConsoleParser consoleParser = new ConsoleParser(sourceConsoleFile);
 
-		// Create Result File
+		// Create Excel Result File
 		for (InstructionType instructionType : InstructionType.values()) {
-			List<PidSampleLine> lines = consoleParser.parse(instructionType);
+			PidSampleLineList lines = consoleParser.parse(instructionType);
 			// Create a new result File
 			String targetFileName = sourceConsoleFileNameWithoutException + "_"
 					+ dateAsString + "_" + instructionType.toString() + ".xlsx";
@@ -91,6 +91,17 @@ public class ExcelPidMain {
 			ExcelPidFiller filler = new ExcelPidFiller();
 			filler.fill(excelModelSourceFile, lines, excelTargetFile);
 		}
+		
+		// Create Command Result File
+		String commandTargetFileName = sourceConsoleFileNameWithoutException + "_"
+				+ dateAsString + "_command.txt";
+		File commandTargetFile = new File(targetDirectoryWithDate, commandTargetFileName);
+		
+		ComputationValuesDataPidCommandGenerator commandGenerator = new  ComputationValuesDataPidCommandGenerator();
+		PidSampleLineList thetaLines = consoleParser.parse(InstructionType.THETA);
+		PidSampleLineList alphaLines = consoleParser.parse(InstructionType.ALPHA);
+
+		commandGenerator.writeToFile(commandTargetFile, thetaLines, alphaLines);
 	}
 
 	/**

@@ -2,10 +2,9 @@ package org.focusrobotique.tools.pid.parser;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 
 import org.focusrobotique.tools.pid.model.InstructionType;
-import org.focusrobotique.tools.pid.model.PidSampleLine;
+import org.focusrobotique.tools.pid.model.PidSampleLineList;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -21,10 +20,10 @@ public class ConsoleParserTest {
 
 		ConsoleParser parser = new ConsoleParser(file);
 
-		List<PidSampleLine> thetaSampleLines = parser.parse(InstructionType.THETA);
+		PidSampleLineList thetaSampleLines = parser.parse(InstructionType.THETA);
 		Assert.assertEquals(8, thetaSampleLines.size());
 
-		List<PidSampleLine> alphaSampleLines = parser.parse(InstructionType.ALPHA);
+		PidSampleLineList alphaSampleLines = parser.parse(InstructionType.ALPHA);
 		Assert.assertEquals(6, alphaSampleLines.size());
 	}
 }

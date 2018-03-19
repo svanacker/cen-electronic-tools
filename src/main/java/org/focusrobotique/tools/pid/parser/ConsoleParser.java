@@ -3,12 +3,12 @@ package org.focusrobotique.tools.pid.parser;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.io.FileUtils;
 import org.focusrobotique.tools.pid.model.InstructionType;
 import org.focusrobotique.tools.pid.model.PidSampleLine;
+import org.focusrobotique.tools.pid.model.PidSampleLineList;
 
 /**
  * Read a file and filter all lines beginning by some instruction (like THETA / ALPHA)
@@ -21,10 +21,10 @@ public class ConsoleParser {
 		this.file = file;
 	}
 
-	public List<PidSampleLine> parse(InstructionType instructionType) throws IOException {
+	public PidSampleLineList parse(InstructionType instructionType) throws IOException {
 		List<String> lines = FileUtils.readLines(file, StandardCharsets.US_ASCII);
 
-		List<PidSampleLine> result = new ArrayList<>();
+		PidSampleLineList result = new PidSampleLineList();
 		
 		PidSampleLineParser parser = new PidSampleLineParser();
 		

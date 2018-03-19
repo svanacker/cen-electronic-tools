@@ -5,6 +5,9 @@ import org.focusrobotique.tools.pid.model.InstructionType;
 import org.focusrobotique.tools.pid.model.PidSampleLine;
 import org.focusrobotique.tools.pid.model.PidType;
 
+/**
+ * Parse a console line to extract some values.
+ */
 public class PidSampleLineParser {
 	
 	public static final String SEPARATOR = "|"; 
@@ -19,22 +22,25 @@ public class PidSampleLineParser {
 		result.setPidTime(Float.valueOf(values[1]));
 		result.setPidType(PidType.valueOf(values[2]));
 		
-		result.setNormalSpeed(Float.valueOf(values[3]));
-		result.setRealSpeed(Float.valueOf(values[4]));
+		result.setNormalAcceleration(Float.valueOf(values[3]));
+		result.setRealAcceleration(Float.valueOf(values[4]));
 		
-		result.setNormalPosition(Float.valueOf(values[5]));
-		result.setRealPosition(Float.valueOf(values[6]));
-
-		result.setProportionalError(Float.valueOf(values[7]));
-		result.setIntegralError(Float.valueOf(values[8]));
-		result.setDerivativeError(Float.valueOf(values[9]));
-
-		result.setPExE(Float.valueOf(values[10]));
-		result.setIExE(Float.valueOf(values[11]));
-		result.setDExE(Float.valueOf(values[12]));
+		result.setNormalSpeed(Float.valueOf(values[5]));
+		result.setRealSpeed(Float.valueOf(values[6]));
 		
-		result.setNormalU(Float.valueOf(values[13]));
-		result.setU(Float.valueOf(values[14]));
+		result.setNormalPosition(Float.valueOf(values[7]));
+		result.setRealPosition(Float.valueOf(values[8]));
+
+		result.setProportionalError(Float.valueOf(values[9]));
+		result.setIntegralError(Float.valueOf(values[10]));
+		result.setDerivativeError(Float.valueOf(values[11]));
+
+		result.setPExE(Float.valueOf(values[12]));
+		result.setIExE(Float.valueOf(values[13]));
+		result.setDExE(Float.valueOf(values[14]));
+		
+		result.setNormalU(Float.valueOf(values[15]));
+		result.setU(Float.valueOf(values[16]));
 
 		return result;
 	}
